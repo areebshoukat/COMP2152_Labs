@@ -1,0 +1,4 @@
+2026-02-22 15:21:11,ping,,0,Success
+2026-02-22 15:21:34,nslookup,github.com,Not found,Failed
+2026-02-22 15:21:40,ipconfig,all,00-23-24-B6-34-98 / 10.0.0.25,Captured
+2026-02-22 15:21:53,arp,local,8 devices,Captured

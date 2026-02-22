@@ -1,0 +1,12 @@
+[2026-02-22 15:21:11] PING 
+
+Pinging DESKTOP-TLNUHDM [fe80::f686:2a30:543a:29a5%17] with 32 bytes of data:
+Reply from fe80::f686:2a30:543a:29a5%17: time<1ms 
+Reply from fe80::f686:2a30:543a:29a5%17: time<1ms 
+Reply from fe80::f686:2a30:543a:29a5%17: time<1ms 
+
+Ping statistics for fe80::f686:2a30:543a:29a5%17:
+    Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+----------------------------------------
