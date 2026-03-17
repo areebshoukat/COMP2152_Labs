@@ -92,37 +92,26 @@ def safe_query(query):
 # ============================================================
 #  UNIT TESTS — fill in the test methods
 # ============================================================
-
 class TestAuditLog(unittest.TestCase):
 
     def setUp(self):
-        """Runs before each test — reseeds the database."""
         seed_database()
 
-    # TODO: Complete test_high_severity
-    #   Call get_events_by_severity("HIGH")
-    #   Assert the returned list has exactly 3 items.
     def test_high_severity(self):
-        pass
+        events = get_events_by_severity("HIGH")
+        self.assertEqual(len(events), 3)
 
-    # TODO: Complete test_recent_events
-    #   Call get_recent_events(5)
-    #   Assert the returned list has exactly 5 items.
     def test_recent_events(self):
-        pass
+        events = get_recent_events(5)
+        self.assertEqual(len(events), 5)
 
-    # TODO: Complete test_count
-    #   Call count_by_severity()
-    #   Assert that ("HIGH", 3) is in the returned list.
     def test_count(self):
-        pass
+        counts = count_by_severity()
+        self.assertIn(("HIGH", 3), counts)
 
-    # TODO: Complete test_safe_bad_query
-    #   Call safe_query("SELECT * FROM fake_table")
-    #   Assert the returned value equals [] (empty list).
     def test_safe_bad_query(self):
-        pass
-
+        result = safe_query("SELECT * FROM fake_table")
+        self.assertEqual(result, [])
 
 # --- Main (provided) ---
 if __name__ == "__main__":
