@@ -1,0 +1,6 @@
+subdomain,severity,type,date
+api.example.com,HIGH,SQL Injection,2026-01-01
+api.example.com,MEDIUM,XSS,2026-01-02
+auth.example.com,HIGH,Broken Auth,2026-01-03
+shop.example.com,LOW,Info Leak,2026-01-03
+api.example.com,HIGH,SQL Injection,2026-01-04

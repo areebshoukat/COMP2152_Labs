@@ -1,72 +1,44 @@
 # ============================================================
 #  WEEK 13 LAB — Q2: ASCII DASHBOARD
-#  COMP2152 — [Your Name Here]
+#  COMP2152 — [Areeb Shoukat]
 # ============================================================
 
-import csv
+from lab13_q1_starter import load_findings, count_by_field
 
-
-SAMPLE_FILE = "scan_results.csv"
-
-
-# --- Helper (provided) ---
-def load_findings(filename):
-    """Load CSV findings (from Q1)."""
-    with open(filename, "r") as f:
-        return list(csv.DictReader(f))
-
-
-# TODO: Complete bar_chart(data, title, max_width=30)
-#   Print the title
-#   Find the max value in data for scaling: max_val = max(count for _, count in data)
-#   For each (label, count) in data:
-#     Calculate bar length: int((count / max_val) * max_width)
-#     Print: f"  {label:<15} {'█' * bar_length} {count}"
+# Print a bar chart in terminal
 def bar_chart(data, title, max_width=30):
-    pass
+    print(f"\n{title}")
+
+    max_value = max(data.values())
+
+    for key, value in data.items():
+        bar_length = int((value / max_value) * max_width)
+        bar = "█" * bar_length
+        print(f"{key:15} | {bar} ({value})")
 
 
-# TODO: Complete severity_summary(findings)
-#   Count findings per severity (HIGH, MEDIUM, LOW)
-#   Return as a list of (severity, count) tuples
-#   Order: HIGH first, then MEDIUM, then LOW
+# Return severity summary (HIGH first)
 def severity_summary(findings):
-    pass
+    counts = count_by_field(findings, "severity")
+
+    ordered = {}
+    for key in ["HIGH", "MEDIUM", "LOW"]:
+        if key in counts:
+            ordered[key] = counts[key]
+
+    return ordered
 
 
-# TODO: Complete timeline(findings)
-#   Count findings per date (use the "date" field)
-#   Return as a list of (date, count) tuples, sorted by date ascending
+# Count findings by date (sorted)
 def timeline(findings):
-    pass
+    counts = count_by_field(findings, "date")
+    return dict(sorted(counts.items()))
 
 
-# --- Main (provided) ---
+# ===== MAIN TEST =====
 if __name__ == "__main__":
-    print("=" * 60)
-    print("  Q2: ASCII DASHBOARD")
-    print("=" * 60)
+    findings = load_findings("findings.csv")
 
-    findings = load_findings(SAMPLE_FILE)
-
-    print()
-    sev = severity_summary(findings)
-    if sev:
-        bar_chart(sev, "SEVERITY BREAKDOWN")
-
-    print()
-    dates = timeline(findings)
-    if dates:
-        bar_chart(dates, "FINDINGS BY DATE")
-
-    print()
-    # Count by type for a third chart
-    type_counts = {}
-    for f in findings:
-        t = f["type"]
-        type_counts[t] = type_counts.get(t, 0) + 1
-    type_data = sorted(type_counts.items(), key=lambda x: x[1], reverse=True)
-    if type_data:
-        bar_chart(type_data, "VULNERABILITY TYPES")
-
-    print("\n" + "=" * 60)
+    bar_chart(severity_summary(findings), "Severity Breakdown")
+    bar_chart(timeline(findings), "Findings by Date")
+    bar_chart(count_by_field(findings, "type"), "Vulnerability Types")
